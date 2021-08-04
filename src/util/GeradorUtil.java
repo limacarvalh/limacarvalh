@@ -36,10 +36,59 @@ public class GeradorUtil {
         int numero = (int) (Math.random() * 100000);
         return numero;
     }
+    
+    public String gerarCnpj (){
+        
+        return gerarNumero(3)+ "." + gerarNumero(2) + "." + gerarNumero(3) 
+                + "." + "/0001-" + gerarNumero(2); 
+    } 
+    
+    public String gerarTelefonefixo(){
+        
+        return "(48)3" + gerarNumero (4) + "-" + gerarNumero(4);
+    }
+    
+    public String geradorDeNumeroCelular(){
+        
+        return "(48)9" + gerarNumero (4) + "-" 
+                + gerarNumero (4);
+    
+    }
 
-    public static void main(String[] args) {
+    public String gerarCEP (){
+        
+        return gerarNumero(4) + "." + gerarNumero(3);
+   
+    } 
+    
+    public String gerarNome(){
+        String[] nomes = {"silvio","joão","maria", "pedro","lucas","vandre","josé"
+        ,"marisa","tania","sueli","tati","antonio","francisco","giogio","hugo",
+        "mariele","william","suelen","otavio","ana","claudia",};
+        
+        int tamanhoLista = nomes.length;
+        int indice = (int)(Math.random()* tamanhoLista);
+        String nome = nomes[indice];
+       
+        
+        return nome + " " + geraSobrenome();
+    } 
+
+     private  String geraSobrenome(){
+        String[] sobrenomes = {"silva","motto","mota", "oliveira","abravaneu","rocha","perreira"
+        ,"pires","percicotte","santos","souza","zen","stark","peixes","alves",
+        "fischer","smitch","tango","carvalho","peixoto","almeida",};
+        
+        int tamanhoLista = sobrenomes.length;
+        int indice = (int)(Math.random()* tamanhoLista);
+        return sobrenomes[indice];
+     }
+         
+    
+        public static void main (String[] args) {
         GeradorUtil util = new GeradorUtil();
-        String cpf = util.gerarCpf();
-        System.out.println("CPF: " + cpf);
+        
+        String nome = util.gerarNome();
+        System.out.println("nome;" + nome); 
     }
 }
