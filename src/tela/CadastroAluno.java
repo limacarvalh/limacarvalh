@@ -5,11 +5,16 @@
  */
 package tela;
 
+import entidade.Aluno;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marcos.carvalho1
  */
 public class CadastroAluno extends javax.swing.JFrame {
+
+    private Aluno aluno;
 
     /**
      * Creates new form CadastroAluno
@@ -42,6 +47,8 @@ public class CadastroAluno extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         varNome = new javax.swing.JTextField();
         Salvar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        varIdade = new javax.swing.JFormattedTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -76,6 +83,12 @@ public class CadastroAluno extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("idade:");
+
+        varIdade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
         principal.setLayout(principalLayout);
         principalLayout.setHorizontalGroup(
@@ -83,11 +96,14 @@ public class CadastroAluno extends javax.swing.JFrame {
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(principalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(varIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
@@ -98,7 +114,11 @@ public class CadastroAluno extends javax.swing.JFrame {
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addGap(9, 9, 9)
+                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(varIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(Salvar)
                 .addGap(65, 65, 65))
         );
@@ -119,8 +139,55 @@ public class CadastroAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        // TODO add your handling code here:
+        aluno = new Aluno();
+        boolean erro = carregarAluno();
+        if (erro) {
+            //salvarBanco
+
+        }
     }//GEN-LAST:event_SalvarActionPerformed
+
+    private boolean carregarAluno() {
+        boolean temErro = false;
+       
+         String nome = varNome.getText().trim();
+        if (nome.length() >= 3) {
+            aluno.setNome(nome);
+        }else{
+            return true;
+        }
+        return temErro;
+    }
+    private boolean validarIdade(){
+        boolean temErro = false;
+        String idade = varIdade.getText().trim();
+        if (idade.equals("")) {
+            temErro = true;
+            JOptionPane.showMessageDialog(null, "Digite uma idade correta");
+        } else {
+            int valorIdade = Integer.parseInt(idade);
+            if (valorIdade <= 16 || valorIdade >= 100) {
+                temErro = true;
+                JOptionPane.showMessageDialog(null, "Digite uma idade correta");
+            } else {
+                aluno.setIdade(valorIdade);
+            }
+
+        }
+     
+    }
+
+    private boolean validarCampo3Valor(String valor) {
+        boolean temErro = false;
+        if (nome.length() >= 3) {
+            aluno.setNome(valor);
+        } else {
+            temErro = true;
+            JOptionPane.showMessageDialog(null, "Digite um nome correto");
+        }
+
+        return temErro;
+    }
 
     /**
      * @param args the command line arguments
@@ -162,6 +229,7 @@ public class CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -172,6 +240,7 @@ public class CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel principal;
     private javax.swing.JLabel titulo;
+    private javax.swing.JFormattedTextField varIdade;
     private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
 }
