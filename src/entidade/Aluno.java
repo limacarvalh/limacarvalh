@@ -12,7 +12,7 @@ package entidade;
 public class Aluno {
     
     private String nome;
-    private String idade;
+    private int idade;
     private String telefone;
     private float salario;
     private String logradouro;
@@ -28,15 +28,16 @@ public class Aluno {
         this.nome = nome;
     }
 
-
-    public String getIdade() {
+    public int getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade(int idade) {
         this.idade = idade;
     }
 
+
+   
     public String getTelefone() {
         return telefone;
     }

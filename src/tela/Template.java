@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
  * @author marcos.carvalho1
  */
 public class Template extends javax.swing.JFrame {
-
+    
+   
     /**
      * Creates new form CadastroAluno
      */
@@ -121,29 +122,12 @@ public class Template extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-      boolean erro = carregarAluno();
-      if (erro) {
-          //salvarBanco
-           
-        }
+        
         
         
     }//GEN-LAST:event_SalvarActionPerformed
 
-    private boolean carregarAluno(){
-        String nome = varNome.getText().trim();
-        boolean temErro = false;  
-        if(nome.length() >=3){
-        
-            //TODO jogar valor para o aluno
-        }else{
-            temErro = true;
-            JOptionPane.showMessageDialog(null,"Digite um nome correto");
-        }
-       
-    
-        return false;
-    }
+   
     /**
      * @param args the command line arguments
      */
